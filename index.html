@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waifu Hall</title>
+  <meta name="description" content="Browse, filter and favorite anime waifus from Demon Slayer, One Piece, JJK, Bleach, Frieren, Oshi No Ko, Naruto, Solo Leveling and Black Clover." />
+  <link rel="icon" href="./images/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Waifu Hall home">Waifu Hall</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#collection">Collection</a>
+      <button class="nav-fav" id="navFav" type="button" aria-pressed="false">
+        Favorites <span class="badge" id="favCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Nine series.<br />One hall of favorites.</h1>
+        <p>
+          Pick your waifu from Demon Slayer, One Piece, Jujutsu Kaisen, Bleach,
+          Frieren, Oshi no Ko, Naruto, Solo Leveling and Black Clover.
+          Search, filter, and save the ones you love.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="summonBtn" type="button">Summon a random waifu</button>
+          <a class="btn btn-ghost" href="#collection">Browse the collection</a>
+        </div>
+      </div>
+
+      <div class="hero-panels" aria-hidden="true">
+        <div class="panel panel-a"><img src="./images/nami.jpg" alt="mitsuri-kanroji"></div>
+        <div class="panel panel-b"><img src="./images/hinata-hyuga.jpg" alt="NAMI"></div>
+        <div class="panel panel-c"><img src="./images/hero.jpeg" alt=""></div>
+      </div>
+    </section>
+
+    
+    <section class="controls" id="collection" aria-label="Filters">
+      <div class="controls-row">
+        <label class="search">
+          <span class="sr-only">Search by name, series or trait</span>
+          <input type="search" id="searchInput" placeholder="Search name, series or trait" autocomplete="off" />
+        </label>
+
+        <label class="sort">
+          <span class="sr-only">Sort characters</span>
+          <select id="sortSelect">
+            <option value="series">Sort by series</option>
+            <option value="name">Sort by name (A–Z)</option>
+            <option value="power">Sort by power rating</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="chips" id="chips" role="group" aria-label="Filter by series"></div>
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+    </section>
+
+    
+    <section class="grid" id="grid" aria-label="Characters"></section>
+
+    <div class="empty" id="empty" hidden>
+      <h2>No waifus found</h2>
+      <p>Clear the search box or pick another series to see more characters.</p>
+      <button class="btn btn-primary" id="resetBtn" type="button">Reset filters</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      A fan project. All characters belong to their original creators and studios.
+    </p>
+  </footer>
+
+  
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalName">
+      <button class="modal-close" type="button" data-close aria-label="Close details">×</button>
+      <div class="modal-art" id="modalArt"></div>
+      <div class="modal-body">
+        <p class="modal-series" id="modalSeries"></p>
+        <h2 id="modalName"></h2>
+        <p class="modal-role" id="modalRole"></p>
+        <p class="modal-about" id="modalAbout"></p>
+
+        <div class="tags" id="modalTags"></div>
+
+        <div class="meter">
+          <div class="meter-label"><span>Power rating</span><strong id="modalPowerNum"></strong></div>
+          <div class="meter-track"><div class="meter-fill" id="modalPowerBar"></div></div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="modalFav" type="button"></button>
+          <button class="btn btn-ghost" id="modalNext" type="button">Another random waifu</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
